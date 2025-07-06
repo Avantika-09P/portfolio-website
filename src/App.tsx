@@ -29,9 +29,10 @@ function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(prev => ({ ...prev, [entry.target.id]: true }));
-          }
+          setIsVisible(prev => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting
+          }));
         });
       },
       { threshold: 0.1 }
@@ -136,7 +137,7 @@ function App() {
             <div className="mb-8 relative">
               <div className="profile-container">
                 <img 
-                  src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" 
+                  src="/avantika.jpeg" 
                   alt="Avantika Padhi" 
                   className="profile-image"
                 />
@@ -245,7 +246,10 @@ function App() {
         </section>
 
         {/* Education Section */}
-        <section id="education" className={`section-card mb-12 ${isVisible.education ? 'animate-slide-in-right' : 'opacity-0'}`}>
+        <section
+          id="education"
+          className={`section-card mb-12 ${isVisible.education ? 'animate-slide-in-right' : 'opacity-0'}`}
+        >
           <h2 className="section-title">
             <GraduationCap className="inline-block mr-3 animate-pulse" size={36} />
             Education
@@ -302,45 +306,11 @@ function App() {
           </div>
         </section>
 
-        {/* Certifications Section */}
-        <section id="certifications" className={`section-card mb-12 ${isVisible.certifications ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <h2 className="section-title">
-            <Award className="inline-block mr-3 animate-pulse" size={36} />
-            Certifications
-            <Sparkles className="inline-block ml-3 text-yellow-400" size={24} />
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { name: "Udemy MERN Stack", link: "#", icon: "🎓" },
-              { name: "Great Learning OOPS with C++", link: "#", icon: "💻" },
-              { name: "Smart Delhi Ideathon Certificate", link: "#", icon: "🏆" },
-              { name: "Data Analytics Certification (HP)", link: "#", icon: "📊" },
-              { name: "Microsoft Copilot 365 (LinkedIn Certified)", link: "#", icon: "🤖" },
-              { name: "Basics of AI and Generative AI (LinkedIn Certified)", link: "#", icon: "🧠" }
-            ].map((cert, index) => (
-              <div key={index} className="certification-item group">
-                <div className="flex items-center mb-3">
-                  <span className="text-2xl mr-3">{cert.icon}</span>
-                  <p className="text-base md:text-lg text-gray-300 flex-1">
-                    <span className="text-amber-400 font-semibold">•</span> {cert.name}
-                  </p>
-                </div>
-                <a 
-                  href={cert.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="certificate-link group-hover:translate-x-2 transition-transform duration-300"
-                >
-                  <span>View Certificate</span>
-                  <ExternalLink size={16} className="group-hover:rotate-45 transition-transform duration-300" />
-                </a>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Skills Section */}
-        <section id="skills" className={`section-card mb-12 ${isVisible.skills ? 'animate-slide-in-left' : 'opacity-0'}`}>
+        <section
+          id="skills"
+          className={`section-card mb-12 ${isVisible.skills ? 'animate-fade-in-up' : 'opacity-0'}`}
+        >
           <h2 className="section-title">
             <Code className="inline-block mr-3 animate-pulse" size={36} />
             Skills
@@ -398,8 +368,51 @@ function App() {
           </div>
         </section>
 
+        {/* Certifications Section */}
+        <section
+          id="certifications"
+          className={`section-card mb-12 ${isVisible.certifications ? 'animate-slide-in-left' : 'opacity-0'}`}
+        >
+          <h2 className="section-title">
+            <Award className="inline-block mr-3 animate-pulse" size={36} />
+            Certifications
+            <Sparkles className="inline-block ml-3 text-yellow-400" size={24} />
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { name: "Udemy MERN Stack", link: "#", icon: "🎓" },
+              { name: "Great Learning OOPS with C++", link: "#", icon: "💻" },
+              { name: "Smart Delhi Ideathon Certificate", link: "#", icon: "🏆" },
+              { name: "Data Analytics Certification (HP)", link: "#", icon: "📊" },
+              { name: "Microsoft Copilot 365 (LinkedIn Certified)", link: "#", icon: "🤖" },
+              { name: "Basics of AI and Generative AI (LinkedIn Certified)", link: "#", icon: "🧠" }
+            ].map((cert, index) => (
+              <div key={index} className="certification-item group">
+                <div className="flex items-center mb-3">
+                  <span className="text-2xl mr-3">{cert.icon}</span>
+                  <p className="text-base md:text-lg text-gray-300 flex-1">
+                    <span className="text-amber-400 font-semibold">•</span> {cert.name}
+                  </p>
+                </div>
+                <a 
+                  href={cert.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="certificate-link group-hover:translate-x-2 transition-transform duration-300"
+                >
+                  <span>View Certificate</span>
+                  <ExternalLink size={16} className="group-hover:rotate-45 transition-transform duration-300" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Projects Section */}
-        <section id="projects" className={`section-card mb-12 ${isVisible.projects ? 'animate-slide-in-right' : 'opacity-0'}`}>
+        <section
+          id="projects"
+          className={`section-card mb-12 ${isVisible.projects ? 'animate-fade-in-up' : 'opacity-0'}`}
+        >
           <h2 className="section-title">
             <FolderOpen className="inline-block mr-3 animate-pulse" size={36} />
             Projects
@@ -474,7 +487,10 @@ function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className={`section-card mb-12 ${isVisible.contact ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        <section
+          id="contact"
+          className={`section-card mb-12 ${isVisible.contact ? 'animate-slide-in-right' : 'opacity-0'}`}
+        >
           <h2 className="section-title">
             <MessageCircle className="inline-block mr-3 animate-pulse" size={36} />
             Get In Touch
