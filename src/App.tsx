@@ -137,7 +137,7 @@ function App() {
             <div className="mb-8 relative">
               <div className="profile-container">
                 <img 
-                  src="avantika.jpeg"
+                  src="/avantika.jpeg"
                   alt="Avantika Padhi" 
                   className="profile-image"
                 />
